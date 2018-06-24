@@ -24,6 +24,7 @@ public class Debug {
 
     List<Integer> array = new ArrayList<>();
 
+    System.out.printf("%c", (char)('A' ^ 'A'));
 
   }
 
