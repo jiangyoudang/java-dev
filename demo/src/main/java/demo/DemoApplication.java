@@ -1,8 +1,11 @@
 package demo;
 
+import demo.model.Customer;
 import demo.service.CustomerService;
+import java.util.Iterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class DemoApplication {
 
+  @Autowired
   CustomerService customerService;
 
   public static void main(String[] args) {
@@ -32,18 +36,25 @@ public class DemoApplication {
 //    System.out.println(service.findAll().get(0).getFirstname());
   }
 
-  public DemoApplication(CustomerService customerService){
-    this.customerService = customerService;
-
-  }
-
-
+//  public DemoApplication(CustomerService customerService){
+//    this.customerService = customerService;
+//
+//  }
 
   @RequestMapping("/home")
   public String home() {
-    return customerService.findAll().get(0).getFirstname();
+    Iterator<Customer> customers = customerService.findAll().iterator();
+    if (customers.hasNext()) {
+
+      return customers.next().getLastname();
+    }
+    return "No record";
 
   }
+
+
+
+
 
 
 }

@@ -1,7 +1,7 @@
 package demo;
 
 import demo.repository.CustomerRepository;
-import demo.repository.CustomerRepositoryImpl;
+//import demo.repository.CustomerRepositoryImpl;
 import demo.service.CustomerService;
 import demo.service.CustomerServiceImpl;
 import org.springframework.context.annotation.Bean;
